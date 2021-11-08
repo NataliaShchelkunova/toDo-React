@@ -1,0 +1,45 @@
+body {
+  background: rgb(37, 12, 149);
+  background: linear-gradient(338deg, 
+  rgba(37, 12, 149, 1) 27%, 
+  rgba(2, 16, 88, 1) 42%, 
+  rgba(2, 16, 88, 1) 65%, 
+  rgba(48, 11, 168, 1) 75%);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: rgb(155, 170, 255);
+  color: linear-gradient(152deg, 
+  rgba(155, 170, 255, 1) 0%, 
+  rgba(225, 122, 254, 1) 100%);
+}
+
+.add-task-input {
+  width: 73%;
+}
+
+.one-line-input-and-button {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 36%;
+}
+
+.all-tasks-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  overflow: auto;
+  margin: 3vh auto;
+  max-height: 82vh;
+  background: rgb(155, 170, 255);
+  background: linear-gradient(152deg, 
+  rgba(155, 170, 255, 1) 0%, 
+  rgba(225, 122, 254, 1) 100%);
+}
