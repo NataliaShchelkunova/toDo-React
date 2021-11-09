@@ -31,12 +31,12 @@ const App = () => {
   const deleteTask = (index) => {
     axios
       .delete(`http://localhost:7000/deleteTask?id=${tasks[index]._id}`)
-      .then((resp) => {
-        let newArr = [...tasks];
+      .then(() => {
+        const newArr = [...tasks];
         newArr.splice(index, 1);
         setTasks(newArr);
       });
-  }
+  };
 
   return (
     <div>
