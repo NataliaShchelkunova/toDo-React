@@ -2,7 +2,7 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-function App() {
+const App = () => {
   const [tasks, setTasks] = useState([]);
   const [text, setText] = useState("");
 
@@ -48,6 +48,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;
