@@ -28,13 +28,11 @@ const App = () => {
       });
   };
 
-  const deleteTask = (index) => {
+ const deleteTask = (index) => {
     axios
       .delete(`http://localhost:7000/deleteTask?id=${tasks[index]._id}`)
-      .then(() => {
-        const newArr = [...tasks];
-        newArr.splice(index, 1);
-        setTasks(newArr);
+      .then((resp) => {
+        setTasks(resp.data.data);
       });
   };
 
@@ -56,6 +54,7 @@ const App = () => {
         {tasks.map((task, index) => (
           <div key={`task-${index}`}>
             <input type="checkbox" isCheck={task.isCheck} />
+          <div> index ? <in> </div>
             <span> {task.text} </span>
             <img src={editImg} alt="" onClick={() => editTask(index)} />
             <img src={deleteImg} alt="" onClick={() => deleteTask(index)} />
