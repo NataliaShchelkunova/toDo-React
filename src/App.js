@@ -1,8 +1,12 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import cancelImg from "./icon/cancelImg.svg";
+import checkImg from "./icon/checkImg.svg";
+import editImg from "./icon/editImg.svg";
+import deleteImg from "./icon/deleteImg.svg";
 
-function App() {
+const App = () => {
   const [tasks, setTasks] = useState([]);
   const [text, setText] = useState("");
 
@@ -24,6 +28,24 @@ function App() {
       });
   };
 
+  const editTask = () => {
+    axios
+      .patch("http://localhost:7000/updateTask", setTasks[text])
+      .then((resp) => {
+        setTasks(null);
+      });
+  };
+
+  function deleteTask(index) {
+    axios
+      .delete(`http://localhost:7000/deleteTask?id=${tasks[index]._id}`)
+      .then((resp) => {
+        let newArr = [...tasks];
+        newArr.splice(index, 1);
+        setTasks(newArr);
+      });
+  }
+
   return (
     <div>
       <header>
@@ -43,6 +65,8 @@ function App() {
           <div key={`task-${index}`}>
             <input type="checkbox" isCheck={task.isCheck} />
             <span> {task.text} </span>
+            <img src={editImg} alt="" onClick={() => editTask(index)} />
+            <img src={deleteImg} alt="" onClick={() => deleteTask(index)} />
           </div>
         ))}
       </div>
