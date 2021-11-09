@@ -28,7 +28,7 @@ const App = () => {
       });
   };
 
-  function deleteTask(index) {
+  const deleteTask = (index) => {
     axios
       .delete(`http://localhost:7000/deleteTask?id=${tasks[index]._id}`)
       .then((resp) => {
