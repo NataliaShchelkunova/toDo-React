@@ -5,6 +5,7 @@ import deleteImg from "../../icon/deleteImg.svg";
 
 const TaskComponent = ({ task, editTask, setTasks, index }) => {
   const { _id, isCheck } = task;
+
   const deleteTask = () => {
     axios
       .delete(`http://localhost:7000/deleteTask?id=${task._id}`)
@@ -28,7 +29,7 @@ const TaskComponent = ({ task, editTask, setTasks, index }) => {
     <div>
       <input
         type="checkbox"
-        defaultChecked={task.isCheck}
+        defaultChecked={task}
         onClick={() => onChangeCheckbox()}
       />
       <span> {task.text} </span>

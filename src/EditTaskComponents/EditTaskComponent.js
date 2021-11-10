@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import cancelImg from "../../icon/cancelImg.svg";
 import checkImg from "../../icon/checkImg.svg";
+import { useState } from "react";
 
 const EditTaskComponent = ({ task, setTasks, setIndexEditTask }) => {
   const { _id, isCheck } = task;
+
   const [taskValue, setTaskValue] = useState(task.text);
   const cancelFunction = () => {
     setIndexEditTask(-1);
@@ -29,7 +31,7 @@ const EditTaskComponent = ({ task, setTasks, setIndexEditTask }) => {
         type="text"
         value={taskValue}
         onChange={(e) => setTaskValue(e.target.value)}
-      ></input>
+      />
       <img src={cancelImg} alt="" onClick={() => cancelFunction()} />
       <img src={checkImg} alt="" onClick={() => saveResultFunction()} />
     </div>

@@ -35,9 +35,9 @@ const App = () => {
     <div>
       <header>
         <h1>ToDo List</h1>
-        <div className="one-line-input-and-button">
+        <div className="One-line-input-and-button">
           <input
-            className="add-task-input"
+            className="Add-task-input"
             type="text"
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -45,7 +45,7 @@ const App = () => {
           <button onClick={() => addNewTask()}>Add new</button>
         </div>
       </header>
-      <div className="all-tasks-container">
+      <div className="All-tasks-container">
         {tasks.map((task, index) => (
           <div key={`task-${index}`}>
             {index !== indexEditTask && (
