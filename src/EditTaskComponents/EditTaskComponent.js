@@ -25,9 +25,9 @@ const EditTaskComponent = ({ task, setTasks, setIndexEditTask }) => {
   };
 
   return (
-    <div className="Task-container">
+    <div className="task-container">
       <input
-        className="Text-input"
+        className="text-input"
         type="text"
         value={taskValue}
         onChange={(e) => setTaskValue(e.target.value)}

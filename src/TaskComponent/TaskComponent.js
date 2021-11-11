@@ -4,7 +4,7 @@ import editImg from "../../icon/editImg.svg";
 import deleteImg from "../../icon/deleteImg.svg";
 
 const TaskComponent = ({ task, editTask, setTasks, index }) => {
-  const { _id, isCheck } = task;
+  const { _id, isCheck, text } = task;
 
   const deleteTask = () => {
     axios.delete(`http://localhost:7000/deleteTask?id=${_id}`).then((resp) => {
@@ -24,14 +24,14 @@ const TaskComponent = ({ task, editTask, setTasks, index }) => {
   };
 
   return (
-    <div className="Task-container">
+    <div className="task-container">
       <input
-        className="Checkbox"
+        className="checkbox"
         type="checkbox"
         checked={isCheck}
         onChange={() => onChangeCheckbox()}
       />
-      <span className="Text-input"> {task.text} </span>
+      <span className="text-input"> {text} </span>
       <img src={editImg} alt="" onClick={() => editTask(index)} />
       <img src={deleteImg} alt="" onClick={() => deleteTask()} />
     </div>
