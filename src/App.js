@@ -1,4 +1,3 @@
-import "./App.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import TaskComponent from "./components/TaskComponent/TaskComponent";
@@ -19,7 +18,7 @@ const App = () => {
     axios
       .post("http://localhost:7000/createTask", {
         text,
-        isCheck: true,
+        isCheck: false,
       })
       .then((res) => {
         setText("");
@@ -46,25 +45,29 @@ const App = () => {
         </div>
       </header>
       <div className="all-tasks-container">
-        {tasks.map((task, index) => (
-          <div key={`task-${index}`}>
-            {index !== indexEditTask && (
-              <TaskComponent
-                task={task}
-                editTask={editTask}
-                setTasks={setTasks}
-                index={index}
-              />
-            )}
-            {index === indexEditTask && (
-              <EditTaskComponent
-                task={task}
-                setTasks={setTasks}
-                setIndexEditTask={setIndexEditTask}
-              />
-            )}
-          </div>
-        ))}
+        {tasks
+          .sort((a, b) =>
+            a.isCheck > b.isCheck ? 1 : a.isCheck < b.isCheck ? -1 : 0
+          )
+          .map((task, index) => (
+            <div className="task-container" key={`task-${index}`}>
+              {index !== indexEditTask && (
+                <TaskComponent
+                  task={task}
+                  editTask={editTask}
+                  setTasks={setTasks}
+                  index={index}
+                />
+              )}
+              {index === indexEditTask && (
+                <EditTaskComponent
+                  task={task}
+                  setTasks={setTasks}
+                  setIndexEditTask={setIndexEditTask}
+                />
+              )}
+            </div>
+          ))}
       </div>
     </div>
   );
