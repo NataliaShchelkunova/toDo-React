@@ -1,20 +1,19 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import cancelImg from "./icon/cancelImg.svg";
-import checkImg from "./icon/checkImg.svg";
-import editImg from "./icon/editImg.svg";
-import deleteImg from "./icon/deleteImg.svg";
+import TaskComponent from "./components/TaskComponent/TaskComponent";
+import EditTaskComponent from "./components/EditTaskComponents/EditTaskComponent";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
   const [text, setText] = useState("");
+  const [indexEditTask, setIndexEditTask] = useState(-1);
 
   useEffect(() => {
     axios.get("http://localhost:7000/allTasks").then((res) => {
       setTasks(res.data.data);
     });
-  });
+  }, []);
 
   const addNewTask = () => {
     axios
@@ -28,12 +27,8 @@ const App = () => {
       });
   };
 
- const deleteTask = (index) => {
-    axios
-      .delete(`http://localhost:7000/deleteTask?id=${tasks[index]._id}`)
-      .then((resp) => {
-        setTasks(resp.data.data);
-      });
+  const editTask = (index) => {
+    setIndexEditTask(index);
   };
 
   return (
@@ -53,11 +48,21 @@ const App = () => {
       <div className="all-tasks-container">
         {tasks.map((task, index) => (
           <div key={`task-${index}`}>
-            <input type="checkbox" isCheck={task.isCheck} />
-          <div> index ? <in> </div>
-            <span> {task.text} </span>
-            <img src={editImg} alt="" onClick={() => editTask(index)} />
-            <img src={deleteImg} alt="" onClick={() => deleteTask(index)} />
+            {index !== indexEditTask && (
+              <TaskComponent
+                task={task}
+                editTask={editTask}
+                setTasks={setTasks}
+                index={index}
+              />
+            )}
+            {index === indexEditTask && (
+              <EditTaskComponent
+                task={task}
+                setTasks={setTasks}
+                setIndexEditTask={setIndexEditTask}
+              />
+            )}
           </div>
         ))}
       </div>
