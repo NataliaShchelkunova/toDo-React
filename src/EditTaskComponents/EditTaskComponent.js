@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import cancelImg from "../../icon/cancelImg.svg";
 import checkImg from "../../icon/checkImg.svg";
-import { useState } from "react";
+import cancelImg from "../../icon/cancelImg.svg";
 
 const EditTaskComponent = ({ task, setTasks, setIndexEditTask }) => {
   const { _id, isCheck } = task;
@@ -26,8 +25,9 @@ const EditTaskComponent = ({ task, setTasks, setIndexEditTask }) => {
   };
 
   return (
-    <div>
+    <div className="Task-container">
       <input
+        className="Text-input"
         type="text"
         value={taskValue}
         onChange={(e) => setTaskValue(e.target.value)}

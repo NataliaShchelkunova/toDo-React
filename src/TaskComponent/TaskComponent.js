@@ -7,11 +7,9 @@ const TaskComponent = ({ task, editTask, setTasks, index }) => {
   const { _id, isCheck } = task;
 
   const deleteTask = () => {
-    axios
-      .delete(`http://localhost:7000/deleteTask?id=${task._id}`)
-      .then((resp) => {
-        setTasks(resp.data.data);
-      });
+    axios.delete(`http://localhost:7000/deleteTask?id=${_id}`).then((resp) => {
+      setTasks(resp.data.data);
+    });
   };
 
   const onChangeCheckbox = () => {
@@ -26,13 +24,14 @@ const TaskComponent = ({ task, editTask, setTasks, index }) => {
   };
 
   return (
-    <div>
+    <div className="Task-container">
       <input
+        className="Checkbox"
         type="checkbox"
-        defaultChecked={task}
-        onClick={() => onChangeCheckbox()}
+        checked={isCheck}
+        onChange={() => onChangeCheckbox()}
       />
-      <span> {task.text} </span>
+      <span className="Text-input"> {task.text} </span>
       <img src={editImg} alt="" onClick={() => editTask(index)} />
       <img src={deleteImg} alt="" onClick={() => deleteTask()} />
     </div>
