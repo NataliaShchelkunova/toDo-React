@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./addComponents.scss";
 
-const AddComponents = ({setTasks}) => {
+const AddComponents = ({ setTasks }) => {
   const [text, setText] = useState("");
+
   const addNewTask = () => {
     axios
       .post("http://localhost:7000/createTask", {

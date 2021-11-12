@@ -37,7 +37,7 @@ const TaskComponent = ({ task, setTasks, index, setIndexEditTask }) => {
         onChange={() => onChangeCheckbox()}
       />
       <span className="text-input"> {text} </span>
-      {isCheck == false && (
+      {!isCheck && (
         <img src={editImg} alt="" onClick={() => editTask(index)} />
       )}
 

@@ -8,18 +8,21 @@
   max-height: 82vh;
   min-height: 82vh;
   background: #0000007a;
+
   .task-container {
     display: flex;
     justify-content: center;
     width: 100%;
     margin: 5px auto;
   }
+
   .text-input {
     width: 85%;
     font-size: 2rem;
     min-height: 40px;
     overflow-wrap: anywhere;
   }
+
   .checkbox,
   img {
     width: 40px;
@@ -32,24 +35,20 @@
   .task-container {
     align-items: center;
   }
+
   .all-tasks-container {
     width: 90%;
   }
-}
-
-@media (max-width: 770px) {
 }
 
 @media (max-width: 540px) {
   .text-input {
     font-size: 1.5rem;
   }
+
   .checkbox,
   img {
     width: 40px;
     height: 40px;
   }
-}
-
-@media (max-width: 285px) {
 }

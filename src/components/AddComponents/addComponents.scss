@@ -1,16 +1,19 @@
 .line-input-and-button {
   width: 100%;
+
   .one-line-input-and-button {
     display: flex;
     align-items: center;
     margin: auto;
     width: 53%;
   }
+
   .add-task-input {
     width: 72%;
     min-height: 30px;
     font-size: 2rem;
   }
+
   button {
     min-height: 43px;
     margin-left: 3%;
@@ -25,6 +28,7 @@
     align-items: center;
     margin: auto;
     width: 53%;
+
     .add-task-input {
       width: 79%;
       min-height: 70px;
@@ -47,18 +51,17 @@
     align-items: flex-end;
     flex-direction: column;
     width: 90%;
+    
     button {
       min-height: 50px;
       width: 42%;
       font-size: 1.5rem;
     }
+    
     .add-task-input {
       width: 96%;
       min-height: 50px;
       font-size: 1.5rem;
     }
   }
-}
-
-@media (max-width: 285px) {
 }
