@@ -1,12 +1,15 @@
-import "./App.css";
 import React, { useEffect, useState } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 import axios from "axios";
-import TaskComponent from "./components/TaskComponent/TaskComponent";
+import AddComponents from "./components/AddComponents/AddComponents";
 import EditTaskComponent from "./components/EditTaskComponents/EditTaskComponent";
+import TaskContainerComponent from "./components/TaskContanerComponent/TaskContainerComponent";
+import "./App.scss";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
-  const [text, setText] = useState("");
+  const [item, setItem] = useState({});
+
   const [indexEditTask, setIndexEditTask] = useState(-1);
 
   useEffect(() => {
@@ -15,57 +18,27 @@ const App = () => {
     });
   }, []);
 
-  const addNewTask = () => {
-    axios
-      .post("http://localhost:7000/createTask", {
-        text,
-        isCheck: true,
-      })
-      .then((res) => {
-        setText("");
-        setTasks(res.data.data);
-      });
-  };
-
-  const editTask = (index) => {
-    setIndexEditTask(index);
-  };
-
   return (
     <div>
       <header>
         <h1>ToDo List</h1>
-        <div className="one-line-input-and-button">
-          <input
-            className="add-task-input"
-            type="text"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-          />
-          <button onClick={() => addNewTask()}>Add new</button>
-        </div>
       </header>
-      <div className="all-tasks-container">
-        {tasks.map((task, index) => (
-          <div key={`task-${index}`}>
-            {index !== indexEditTask && (
-              <TaskComponent
-                task={task}
-                editTask={editTask}
-                setTasks={setTasks}
-                index={index}
-              />
-            )}
-            {index === indexEditTask && (
-              <EditTaskComponent
-                task={task}
-                setTasks={setTasks}
-                setIndexEditTask={setIndexEditTask}
-              />
-            )}
+      <Switch>
+        <Route path="/home">
+          <div className="line-input-and-button">
+            <AddComponents setTasks={setTasks} />
           </div>
-        ))}
-      </div>
+          <TaskContainerComponent
+            tasks={tasks}
+            setTasks={setTasks}
+            setItem={setItem}
+          />
+        </Route>
+        <Route path="/edit">
+          <EditTaskComponent setTasks={setTasks} item={item} />
+        </Route>
+        <Redirect from="/" to="/home"></Redirect>
+      </Switch>
     </div>
   );
 };

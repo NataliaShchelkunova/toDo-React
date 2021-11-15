@@ -1,15 +1,14 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
+import "./editTaskComponent.scss";
 import checkImg from "../../icon/checkImg.svg";
 import cancelImg from "../../icon/cancelImg.svg";
 
-const EditTaskComponent = ({ task, setTasks, setIndexEditTask }) => {
-  const { _id, isCheck } = task;
-
-  const [taskValue, setTaskValue] = useState(task.text);
-  const cancelFunction = () => {
-    setIndexEditTask(-1);
-  };
+const EditTaskComponent = ({ setTasks, item }) => {
+  const { _id, isCheck } = item;
+  const [taskValue, setTaskValue] = useState(item.text);
+  const history = useHistory();
 
   const saveResultFunction = () => {
     axios
@@ -21,7 +20,10 @@ const EditTaskComponent = ({ task, setTasks, setIndexEditTask }) => {
       .then((res) => {
         setTasks(res.data.data);
       });
-    setIndexEditTask(-1);
+  };
+
+  const goToHome = () => {
+    history.push(`/`);
   };
 
   return (
@@ -32,8 +34,15 @@ const EditTaskComponent = ({ task, setTasks, setIndexEditTask }) => {
         value={taskValue}
         onChange={(e) => setTaskValue(e.target.value)}
       />
-      <img src={cancelImg} alt="" onClick={() => cancelFunction()} />
-      <img src={checkImg} alt="" onClick={() => saveResultFunction()} />
+      <img src={cancelImg} alt="" onClick={() => goToHome()} />
+      <img
+        src={checkImg}
+        alt=""
+        onClick={() => {
+          saveResultFunction();
+          goToHome();
+        }}
+      />
     </div>
   );
 };
