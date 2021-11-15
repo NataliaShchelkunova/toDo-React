@@ -18,7 +18,7 @@ const App = () => {
     });
   }, []);
 
-  return (
+ return (
     <div>
       <header>
         <h1>ToDo List</h1>
