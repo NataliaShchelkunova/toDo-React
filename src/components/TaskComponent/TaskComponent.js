@@ -1,11 +1,12 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import editImg from "../../icon/editImg.svg";
 import deleteImg from "../../icon/deleteImg.svg";
 
-
-const TaskComponent = ({ task, setTasks, index, setIndexEditTask }) => {
+const TaskComponent = ({ task, setTasks, index, setItem }) => {
   const { _id, isCheck, text } = task;
+  let history = useHistory();
 
   const deleteTask = () => {
     axios.delete(`http://localhost:7000/deleteTask?id=${_id}`).then((resp) => {
@@ -14,7 +15,8 @@ const TaskComponent = ({ task, setTasks, index, setIndexEditTask }) => {
   };
 
   const editTask = (index) => {
-    setIndexEditTask(index);
+    setItem(task);
+    history.push(`/edit/${_id}`);
   };
 
   const onChangeCheckbox = () => {
@@ -40,7 +42,6 @@ const TaskComponent = ({ task, setTasks, index, setIndexEditTask }) => {
       {!isCheck && (
         <img src={editImg} alt="" onClick={() => editTask(index)} />
       )}
-
       <img src={deleteImg} alt="" onClick={() => deleteTask()} />
     </div>
   );

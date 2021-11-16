@@ -4,17 +4,20 @@ import "./addComponents.scss";
 
 const AddComponents = ({ setTasks }) => {
   const [text, setText] = useState("");
-
   const addNewTask = () => {
-    axios
-      .post("http://localhost:7000/createTask", {
-        text,
-        isCheck: false,
-      })
-      .then((res) => {
-        setText("");
-        setTasks(res.data.data);
-      });
+    {
+      text.trim()
+        ? axios
+            .post("http://localhost:7000/createTask", {
+              text,
+              isCheck: false,
+            })
+            .then((res) => {
+              setText("");
+              setTasks(res.data.data);
+            })
+        : alert("Fill in the field");
+    }
   };
 
   return (
