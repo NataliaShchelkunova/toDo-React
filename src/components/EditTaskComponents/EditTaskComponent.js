@@ -48,3 +48,4 @@ const EditTaskComponent = ({ setTasks, item }) => {
 };
 
 export default EditTaskComponent;
+
