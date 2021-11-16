@@ -5,6 +5,7 @@ import "./taskContainer.scss";
 const TaskContainerComponent = ({ tasks, setTasks, setItem }) => {
   const [setIndexEditTask] = useState(-1);
   return (
+    
     <div className="all-tasks-container">
       {tasks
         .sort((a, b) =>

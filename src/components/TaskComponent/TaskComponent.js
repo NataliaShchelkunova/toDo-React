@@ -39,7 +39,7 @@ const TaskComponent = ({ task, setTasks, index, setItem }) => {
         onChange={() => onChangeCheckbox()}
       />
       <span className="text-input"> {text} </span>
-      {isCheck == false && (
+      {!isCheck && (
         <img src={editImg} alt="" onClick={() => editTask(index)} />
       )}
       <img src={deleteImg} alt="" onClick={() => deleteTask()} />
