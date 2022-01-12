@@ -8,7 +8,7 @@ const AddComponents = ({ setTasks }) => {
     {
       text.trim()
         ? axios
-            .post("http://localhost:7000/createTask", {
+            .post("https://node-js-app-project.herokuapp.com/createTask", {
               text,
               isCheck: false,
             })
