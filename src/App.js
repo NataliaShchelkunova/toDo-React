@@ -13,7 +13,7 @@ const App = () => {
   const [indexEditTask, setIndexEditTask] = useState(-1);
 
   useEffect(() => {
-    axios.get("http://localhost:7000/allTasks").then((res) => {
+    axios.get("https://node-js-app-project.herokuapp.com/allTasks").then((res) => {
       setTasks(res.data.data);
     });
   }, []);
