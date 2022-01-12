@@ -10,8 +10,6 @@ const App = () => {
   const [tasks, setTasks] = useState([]);
   const [item, setItem] = useState({});
 
-  const [indexEditTask, setIndexEditTask] = useState(-1);
-
   useEffect(() => {
     axios.get("https://node-js-app-project.herokuapp.com/allTasks").then((res) => {
       setTasks(res.data.data);
