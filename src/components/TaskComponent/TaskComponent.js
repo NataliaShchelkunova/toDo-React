@@ -9,7 +9,7 @@ const TaskComponent = ({ task, setTasks, index, setItem }) => {
   let history = useHistory();
 
   const deleteTask = () => {
-    axios.delete(`https://node-js-app-project.herokuapp.com/deleteTask?id=${_id}`).then((resp) => {
+    axios.delete(`http://localhost:7000/deleteTask?id=${_id}`).then((resp) => {
       setTasks(resp.data.data);
     });
   };
@@ -21,7 +21,7 @@ const TaskComponent = ({ task, setTasks, index, setItem }) => {
 
   const onChangeCheckbox = () => {
     axios
-      .patch("https://node-js-app-project.herokuapp.com/updateTask", {
+      .patch("http://localhost:7000/updateTask", {
         _id,
         isCheck: !isCheck,
       })

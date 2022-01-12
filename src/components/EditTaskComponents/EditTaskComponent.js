@@ -12,7 +12,7 @@ const EditTaskComponent = ({ setTasks, item }) => {
 
   const saveResultFunction = () => {
     axios
-      .patch("https://node-js-app-project.herokuapp.com/updateTask", {
+      .patch("http://localhost:7000/updateTask", {
         _id,
         text: taskValue,
         isCheck,
